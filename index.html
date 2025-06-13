@@ -322,6 +322,103 @@
             transform: scale(1.05);
         }
         
+        .selling-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        
+        .selling-point {
+            background: linear-gradient(165deg, rgba(20, 18, 36, 0.95) 0%, rgba(14, 12, 25, 0.9) 100%);
+            border: 1px solid var(--color-border);
+            border-left: 3px solid var(--color-primary-action);
+            border-radius: 8px;
+            padding: 1.2rem;
+            display: flex;
+            align-items: flex-start;
+            transition: all 0.3s ease;
+        }
+        
+        .selling-point:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+        }
+        
+        .selling-point:nth-child(2) {
+            border-left-color: var(--color-accent-gold);
+        }
+        
+        .selling-point:nth-child(3) {
+            border-left-color: var(--color-accent-cyan);
+        }
+        
+        .selling-point-icon {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .selling-point-icon .icon {
+            width: 100%;
+            height: 100%;
+            stroke: var(--color-accent-gold);
+        }
+        
+        .selling-point:nth-child(1) .selling-point-icon .icon {
+            stroke: var(--color-primary-action);
+        }
+        
+        .selling-point:nth-child(2) .selling-point-icon .icon {
+            stroke: var(--color-accent-gold);
+        }
+        
+        .selling-point:nth-child(3) .selling-point-icon .icon {
+            stroke: var(--color-accent-cyan);
+        }
+        
+        .selling-point-text h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-text-primary);
+        }
+        
+        .selling-point-text p {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            margin: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .selling-points {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                margin: 1.5rem 0;
+            }
+            
+            .selling-point {
+                padding: 1rem;
+            }
+            
+            .selling-point-icon {
+                width: 30px;
+                height: 30px;
+            }
+            
+            .selling-point-text h3 {
+                font-size: 0.9rem;
+            }
+            
+            .selling-point-text p {
+                font-size: 0.8rem;
+            }
+        }
+        
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% {
                 transform: translateY(0);
@@ -384,8 +481,54 @@
         <section id="hero" class="hero section">
             <div class="container">
                 <div class="panel">
-                    <h1>别再猜了，你的交易水平到底在哪？</h1>
-                    <h2>在这里，用数据和历史对话，发现你真正的交易能力。</h2>
+                    <!-- <h1>别再猜了，你的交易水平到底在哪？</h1>
+                    <h2>在这里，用数据和历史对话，发现你真正的交易能力。</h2> -->
+
+                    <h1 class="mb-2">打破幻觉，走向成熟</h1>
+                    <h2>当别人真金白银给市场交学费，我在这里 1周 顶10年</h2>
+                    
+                    <div class="selling-points">
+                        <div class="selling-point">
+                            <div class="selling-point-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                                </svg>
+                            </div>
+                            <div class="selling-point-text">
+                                <h3>丰富可自定义参数的指标</h3>
+                                <p>自由搭配，才能验证你的技术</p>
+                            </div>
+                        </div>
+                        
+                        <div class="selling-point">
+                            <div class="selling-point-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                                </svg>
+                            </div>
+                            <div class="selling-point-text">
+                                <h3>真实的仓位机制</h3>
+                                <p>不仅训练技术分析能力，更有风险控制能力的全面提升</p>
+                            </div>
+                        </div>
+                        
+                        <div class="selling-point">
+                            <div class="selling-point-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                            </div>
+                            <div class="selling-point-text">
+                                <h3>专业的成绩评估</h3>
+                                <p>助你认清自己的交易系统，建立强大自信</p>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <a data-umami-event="go-to-app-hero" href="https://g.kciyuan.cn/app" _target="blank" class="btn mt-8">开启我的第一次双盲训练 →</a>
                 </div>
             </div>
