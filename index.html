@@ -48,6 +48,11 @@
             --background-pattern-size: 30px 30px;
         }
         
+        html {
+            scroll-behavior: smooth;
+            height: 100%;
+        }
+        
         body {
             background-color: var(--color-background-dark);
             background-image: var(--background-pattern);
@@ -57,6 +62,7 @@
             line-height: 1.5;
             margin: 0;
             padding: 0;
+            height: 100%;
         }
         
         .container {
@@ -165,11 +171,16 @@
             align-items: center;
             text-align: center;
             padding: 2rem 1rem;
+            position: relative;
         }
         
         .pain-points {
             padding: 4rem 1rem;
             text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         
         .pain-list {
@@ -194,6 +205,10 @@
             padding: 4rem 1rem;
             text-align: center;
             background: linear-gradient(170deg, rgba(19, 18, 31, 0.7) 0%, rgba(12, 11, 25, 0.9) 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         
         .features {
@@ -234,6 +249,91 @@
             padding: 4rem 1rem;
         }
         
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            animation: bounce 2s infinite;
+            z-index: 10;
+        }
+        
+        .scroll-indicator .text {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 8px;
+        }
+        
+        .scroll-indicator .arrow {
+            width: 20px;
+            height: 20px;
+            border-right: 2px solid var(--color-accent-gold);
+            border-bottom: 2px solid var(--color-accent-gold);
+            transform: rotate(45deg);
+        }
+        
+        .section-nav {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .section-nav-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .section-nav-dot.active {
+            background-color: var(--color-primary-action);
+            box-shadow: 0 0 10px rgba(204, 32, 41, 0.5);
+        }
+        
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 40px;
+            width: auto;
+            filter: drop-shadow(0 0 5px rgba(204, 32, 41, 0.3));
+            transition: all 0.3s ease;
+        }
+        
+        .logo img:hover {
+            filter: drop-shadow(0 0 8px rgba(204, 32, 41, 0.5));
+            transform: scale(1.05);
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        
         @media (max-width: 768px) {
             .panel {
                 border-width: 3px;
@@ -253,24 +353,52 @@
                 padding: 0.6rem 1.2rem;
                 font-size: 0.9rem;
             }
+            
+            .logo {
+                top: 15px;
+                left: 15px;
+            }
+            
+            .logo img {
+                height: 30px;
+            }
         }
     </style>
 </head>
 <body>
     <main>
+        <!-- Logo -->
+        <a href="#" class="logo">
+            <img src="./logo.svg" alt="K次元 Logo">
+        </a>
+        
+        <!-- 侧边导航点 -->
+        <div class="section-nav">
+            <div class="section-nav-dot active" data-section="hero"></div>
+            <div class="section-nav-dot" data-section="pain"></div>
+            <div class="section-nav-dot" data-section="solution"></div>
+            <div class="section-nav-dot" data-section="final"></div>
+        </div>
+        
         <!-- 区块一：英雄区域 - The Hook -->
-        <section class="hero">
+        <section id="hero" class="hero section">
             <div class="container">
                 <div class="panel">
                     <h1>别再猜了，你的交易水平到底在哪？</h1>
                     <h2>在这里，用数据和历史对话，发现你真正的交易能力。</h2>
-                    <a href="#start" class="btn mt-8">开启我的第一次双盲训练 →</a>
+                    <a data-umami-event="go-to-app-hero" href="https://g.kciyuan.cn/app" _target="blank" class="btn mt-8">开启我的第一次双盲训练 →</a>
                 </div>
+            </div>
+            
+            <!-- 滚动指示器 -->
+            <div class="scroll-indicator" id="scroll-down">
+                <div class="text"></div>
+                <div class="arrow"></div>
             </div>
         </section>
         
         <!-- 区块二：冲突与问题 - The Pain -->
-        <section class="pain-points">
+        <section id="pain" class="pain-points section">
             <div class="container">
                 <div class="k-line"></div>
                 <h2>满屏的"股神"，哪个是真？满脑的"战法"，哪个有用？</h2>
@@ -284,7 +412,7 @@
         </section>
         
         <!-- 区块三：解决方案 - The Solution -->
-        <section class="solution">
+        <section id="solution" class="solution section">
             <div class="container">
                 <div class="k-line"></div>
                 <h2>K次元：你的个人交易实验室</h2>
@@ -310,12 +438,12 @@
         </section>
         
         <!-- 区块四：最终召唤 - The Final CTA -->
-        <section class="final-cta">
+        <section id="final" class="final-cta section">
             <div class="container">
                 <div class="k-line"></div>
                 <h2>准备好，遇见那个更强大的交易者</h2>
                 <p class="mb-6">永久免费的基础训练。无需注册，立即开始。</p>
-                <a href="#app" class="btn">立即进入K次元 →</a>
+                <a data-umami-event="go-to-app-final" href="https://g.kciyuan.cn/app" _target="blank" class="btn">立即进入K次元 →</a>
             </div>
         </section>
     </main>
@@ -340,6 +468,98 @@
                 this.style.transform = '';
             });
         });
+        
+        // 滚动指示器点击事件
+        document.getElementById('scroll-down').addEventListener('click', function() {
+            const painSection = document.getElementById('pain');
+            painSection.scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        // 侧边导航点点击事件
+        document.querySelectorAll('.section-nav-dot').forEach(dot => {
+            dot.addEventListener('click', function() {
+                const sectionId = this.getAttribute('data-section');
+                document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+        
+        // 滚动监听，更新导航点状态
+        const sections = document.querySelectorAll('.section');
+        const navDots = document.querySelectorAll('.section-nav-dot');
+        
+        // 平滑滚动增强
+        let isScrolling = false;
+        let lastScrollTime = 0;
+        const scrollCooldown = 1000; // 滚动冷却时间（毫秒）
+        
+        /*window.addEventListener('wheel', function(e) {
+            const now = Date.now();
+            if (isScrolling || now - lastScrollTime < scrollCooldown) return;
+            
+            // 确定滚动方向
+            const direction = e.deltaY > 0 ? 1 : -1;
+            
+            // 获取当前可见区域
+            let currentSectionIndex = 0;
+            const scrollPosition = window.scrollY + window.innerHeight / 2;
+            
+            sections.forEach((section, index) => {
+                const sectionTop = section.offsetTop;
+                const sectionBottom = sectionTop + section.offsetHeight;
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                    currentSectionIndex = index;
+                }
+            });
+            
+            // 计算目标区域
+            let targetIndex = currentSectionIndex + direction;
+            if (targetIndex < 0) targetIndex = 0;
+            if (targetIndex >= sections.length) targetIndex = sections.length - 1;
+            
+            // 如果有目标区域且不是当前区域
+            if (targetIndex !== currentSectionIndex) {
+                isScrolling = true;
+                lastScrollTime = now;
+                
+                // 滚动到目标区域
+                sections[targetIndex].scrollIntoView({ behavior: 'smooth' });
+                
+                // 更新导航点状态
+                navDots.forEach((dot, index) => {
+                    if (index === targetIndex) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+                
+                // 滚动完成后重置状态
+                setTimeout(() => {
+                    isScrolling = false;
+                }, scrollCooldown);
+            }
+        }, { passive: true });*/
+        
+        // 监听滚动事件，更新导航点状态
+        window.addEventListener('scroll', function() {
+            const scrollPosition = window.scrollY + window.innerHeight / 2;
+            
+            sections.forEach((section, index) => {
+                const sectionTop = section.offsetTop;
+                const sectionBottom = sectionTop + section.offsetHeight;
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                    navDots.forEach((dot, i) => {
+                        if (i === index) {
+                            dot.classList.add('active');
+                        } else {
+                            dot.classList.remove('active');
+                        }
+                    });
+                }
+            });
+        }, { passive: true });
     </script>
 </body>
 </html>
