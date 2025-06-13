@@ -3,35 +3,343 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <title>K次元</title>
-    <meta property="og:title" content="">
-    <meta property="og:description" content="">
-    <meta property="og:image" content="">
-    <meta property="og:url" content="">
+    <meta name="description" content="K次元 - 你的个人交易实验室。通过双盲训练系统，锤炼你的交易盘感，量化你的交易能力。">
+    <meta name="keywords" content="K线,交易训练,股票训练,期货训练,交易盘感,量化交易,双盲训练">
+    <title>K次元 - 你的个人交易实验室</title>
+    <meta property="og:title" content="K次元 - 你的个人交易实验室">
+    <meta property="og:description" content="通过双盲训练系统，锤炼你的交易盘感，量化你的交易能力。">
+    <meta property="og:image" content="./assets/og-image.jpg">
+    <meta property="og:url" content="https://kciyuan.cn">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       "name": "K次元",
       "applicationCategory": "BusinessApplication",
-      "operatingSystem": ["Windows", "Linux"],
+      "operatingSystem": ["Windows", "Linux", "Mac", "iOS", "Android", "Web"],
       "offers": {
         "@type": "Offer",
-        "price": "599",
+        "price": "58",
         "priceCurrency": "CNY"
       },
-      "description": ""
+      "description": "你的个人交易实验室。通过双盲训练系统，锤炼你的交易盘感，量化你的交易能力。"
     }
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script defer src="https://eu.umami.is/script.js" data-website-id="ee09a6e4-a3cb-4625-ade3-4dcf9161b33e"></script>
+    <script defer src="https://eu.umami.is/script.js" data-website-id="c8d53469-db8d-450e-9061-56cfc3abe0dd"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
     <style>
+        :root {
+            --color-background-dark: #0A0A14;
+            --color-panel-background-flat: #0C0B19;
+            --color-border: #232040;
+            --color-primary-action: #CC2029;
+            --color-primary-action-light: #D12952;
+            --color-secondary-bg: rgba(13, 11, 26, 0.6);
+            --color-accent-gold: #B69C58;
+            --color-accent-cyan: #3A6C86;
+            --color-accent-cyan-light: #4A7D9A;
+            --color-accent-purple: #4A3C65;
+            --color-text-primary: #E0E0F0;
+            --color-text-secondary: #8A889F;
+            --color-text-price: #B69C58;
+            --background-pattern: radial-gradient(rgba(70, 60, 130, 0.03) 1px, transparent 1px);
+            --background-pattern-size: 30px 30px;
+        }
+        
+        body {
+            background-color: var(--color-background-dark);
+            background-image: var(--background-pattern);
+            background-size: var(--background-pattern-size);
+            color: var(--color-text-primary);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .panel {
+            background: linear-gradient(170deg, #13121F 0%, #0C0B19 100%);
+            border: 4px solid var(--color-primary-action);
+            border-radius: 26px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            overflow: hidden;
+            margin: 2rem 0;
+            padding: 3rem 2rem;
+        }
+        
+        .k-line {
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                var(--color-accent-cyan-light) 10%, 
+                var(--color-primary-action) 30%, 
+                var(--color-accent-gold) 50%, 
+                var(--color-primary-action) 70%, 
+                var(--color-accent-cyan-light) 90%, 
+                transparent 100%);
+            margin: 3rem auto;
+            max-width: 80%;
+            opacity: 0.7;
+        }
+        
+        h1, h2, h3 {
+            margin: 0;
+            line-height: 1.2;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--color-accent-gold);
+        }
+        
+        .btn {
+            background: linear-gradient(to bottom, var(--color-primary-action-light), var(--color-primary-action));
+            color: var(--color-text-primary);
+            border: none;
+            border-radius: 20px;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+            box-shadow: inset 0 1px 2px rgba(255,255,255,0.3), inset 0 -1px 1px rgba(0,0,0,0.3), 0 4px 12px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: inset 0 1px 2px rgba(255,255,255,0.3), inset 0 -1px 1px rgba(0,0,0,0.3), 0 6px 16px rgba(0,0,0,0.3);
+        }
+        
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            background: linear-gradient(rgb(66 0 255 / 15%), rgba(255, 255, 255, 0));
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+        
+        .btn::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.07);
+            border-radius: 50%;
+            transform: translateY(-50%);
+            box-shadow: rgb(103 1 21 / 50%) 0px -5px 10px;
+            z-index: -1;
+        }
+        
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+        
+        .pain-points {
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+        
+        .pain-list {
+            list-style: none;
+            padding: 0;
+            margin: 2rem 0;
+            text-align: left;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .pain-list li {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: rgba(29, 27, 44, 0.8);
+            border-left: 2px solid var(--color-primary-action);
+            border-radius: 6px;
+        }
+        
+        .solution {
+            padding: 4rem 1rem;
+            text-align: center;
+            background: linear-gradient(170deg, rgba(19, 18, 31, 0.7) 0%, rgba(12, 11, 25, 0.9) 100%);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            text-align: left;
+        }
+        
+        .feature-card {
+            background: linear-gradient(165deg, rgba(20, 18, 36, 0.95) 0%, rgba(14, 12, 25, 0.9) 100%);
+            border: 1px solid var(--color-border);
+            border-top: 3px solid var(--color-accent-gold);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+        }
+        
+        .feature-card h3 {
+            color: var(--color-accent-gold);
+            margin-bottom: 1rem;
+        }
+        
+        .final-cta {
+            min-height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 4rem 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .panel {
+                border-width: 3px;
+                border-radius: 18px;
+                padding: 2rem 1rem;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.3rem;
+            }
+            
+            .btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 <body>
+    <main>
+        <!-- 区块一：英雄区域 - The Hook -->
+        <section class="hero">
+            <div class="container">
+                <div class="panel">
+                    <h1>别再猜了，你的交易水平到底在哪？</h1>
+                    <h2>在这里，用数据和历史对话，发现你真正的交易能力。</h2>
+                    <a href="#start" class="btn mt-8">开启我的第一次双盲训练 →</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 区块二：冲突与问题 - The Pain -->
+        <section class="pain-points">
+            <div class="container">
+                <div class="k-line"></div>
+                <h2>满屏的"股神"，哪个是真？满脑的"战法"，哪个有用？</h2>
+                <ul class="pain-list">
+                    <li>晒单P图横行，你无法判断一个策略的真正价值。</li>
+                    <li>复盘充满偏见，你总在"马后炮"中自我感动。</li>
+                    <li>实盘试错太贵，每一次学费都是真金白银的亏损。</li>
+                </ul>
+                <p class="text-lg mt-6">在一个无法被客观衡量的世界里，努力和运气，常常被混为一谈。</p>
+            </div>
+        </section>
+        
+        <!-- 区块三：解决方案 - The Solution -->
+        <section class="solution">
+            <div class="container">
+                <div class="k-line"></div>
+                <h2>K次元：你的个人交易实验室</h2>
+                <p class="max-w-2xl mx-auto mb-8">
+                    我们提供一个绝对纯粹的训练环境。通过独创的价格归一化双盲系统，抹去一切代码、时间、价格的干扰。你面对的，只有最真实的K线走势，和你自己的决策。
+                </p>
+                
+                <div class="features">
+                    <div class="feature-card">
+                        <h3>无限训练</h3>
+                        <p>在数万段历史行情中，锤炼你的盘感。</p>
+                    </div>
+                    <div class="feature-card" style="border-top-color: var(--color-primary-action);">
+                        <h3>数据化复盘</h3>
+                        <p>用夏普率、最大回撤等专业指标，量化你的每一次操作。</p>
+                    </div>
+                    <div class="feature-card" style="border-top-color: var(--color-accent-cyan);">
+                        <h3>建立自信</h3>
+                        <p>不再听信他人，只相信你亲手验证过的交易系统。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 区块四：最终召唤 - The Final CTA -->
+        <section class="final-cta">
+            <div class="container">
+                <div class="k-line"></div>
+                <h2>准备好，遇见那个更强大的交易者</h2>
+                <p class="mb-6">永久免费的基础训练。无需注册，立即开始。</p>
+                <a href="#app" class="btn">立即进入K次元 →</a>
+            </div>
+        </section>
+    </main>
+    
+    <script>
+        // 添加按钮点击效果
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('mousedown', function() {
+                this.style.transform = 'translateY(1px)';
+            });
+            
+            button.addEventListener('mouseup', function() {
+                this.style.transform = '';
+            });
+            
+            // 添加简单的入场动画
+            button.addEventListener('mouseover', function() {
+                this.style.transform = 'translateY(-2px)';
+            });
+            
+            button.addEventListener('mouseout', function() {
+                this.style.transform = '';
+            });
+        });
+    </script>
 </body>
 </html>
