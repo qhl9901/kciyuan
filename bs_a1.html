@@ -135,6 +135,15 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <style>
+        /* 轻量防复制（可被覆盖，但提高成本） */
+        html, body, main {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+        }
+    </style>
 </head>
 <body>
     <main class="pb-20">
@@ -368,6 +377,75 @@
             document.addEventListener('keydown', function (e) {
                 if (e.key === 'Escape') closeLightbox();
             });
+        })();
+    </script>
+
+    <script>
+        (function () {
+            // 阻止右键/选中/复制/拖拽
+            ['contextmenu','selectstart','dragstart'].forEach(function(evt){
+                document.addEventListener(evt, function(e){ e.preventDefault(); }, { passive:false });
+            });
+            document.addEventListener('copy', function(e){
+                if (e.clipboardData) {
+                    e.clipboardData.setData('text/plain', '');
+                }
+                e.preventDefault();
+            }, false);
+
+            // 阻止常见打开开发者工具/查看源码快捷键
+            document.addEventListener('keydown', function(e){
+                var key = (e.key || '').toLowerCase();
+                var meta = e.metaKey || e.ctrlKey; // mac / win
+                if (
+                    e.keyCode === 123 || // F12
+                    (meta && key === 'u') || // 查看源码
+                    (meta && key === 's') || // 保存
+                    (e.shiftKey && meta && (key === 'i' || key === 'j' || key === 'c')) // DevTools
+                ) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+            }, true);
+
+            // 创建遮罩，用于发现调试时锁屏
+            var blocker = document.createElement('div');
+            blocker.id = 'anti-debug-overlay';
+            blocker.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.92);color:#fff;display:none;align-items:center;justify-content:center;z-index:2147483647;';
+            var inner = document.createElement('div');
+            inner.style.cssText = 'text-align:center;font-size:1.125rem;line-height:1.8;padding:1rem 1.5rem;border:1px solid rgba(255,255,255,0.15);border-radius:12px;background:rgba(17,17,27,0.85);max-width:90%;';
+            inner.textContent = '检测到开发者工具已开启，为保护内容已锁定页面。';
+            blocker.appendChild(inner);
+            document.addEventListener('DOMContentLoaded', function(){ document.body.appendChild(blocker); });
+
+            function showBlock(){ blocker && (blocker.style.display = 'flex'); document.body && (document.body.style.pointerEvents = 'none'); }
+            function hideBlock(){ blocker && (blocker.style.display = 'none'); document.body && (document.body.style.pointerEvents = ''); }
+
+            // DevTools 检测：窗口差值 + 轮询
+            (function devtoolsWatch(){
+                var threshold = 160;
+                var opened = false;
+                function check(){
+                    var wOpen = Math.abs(window.outerWidth - window.innerWidth) > threshold;
+                    var hOpen = Math.abs(window.outerHeight - window.innerHeight) > threshold;
+                    if (wOpen || hOpen) {
+                        if (!opened) { opened = true; showBlock(); }
+                    } else {
+                        if (opened) { opened = false; hideBlock(); }
+                    }
+                }
+                setInterval(check, 600);
+                check();
+            })();
+
+            // 提高调试成本：周期性 debugger
+            (function noisy(){
+                var t = setInterval(function(){
+                    try { Function('debugger')(); } catch(_) {}
+                }, 2000);
+                window.addEventListener('beforeunload', function(){ clearInterval(t); });
+            })();
         })();
     </script>
 </body>
