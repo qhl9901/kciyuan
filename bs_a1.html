@@ -74,7 +74,15 @@
             border-radius: 3px;
             font-weight: 500;
         }
-        
+        .hl2 {
+            color: #c50844;
+        }
+        .hl3 {
+            color: #0d00c3;
+        }
+        .hl4 {
+            font-size: 0.8em;
+        }
         /* 强制覆盖 Tailwind 的 whitespace-pre，保持换行且断长词 */
         .article-text-block.whitespace-pre {
             white-space: pre-wrap !important;
@@ -203,19 +211,19 @@
 <span class="hl">首先是对通达信上测评系统的必要设置，</span> 也就是我上面说过的“精心设计的回测”， <span class="hl">为什么呢？</span> <span class="article-note-dim">如果不按照我的这个严苛的设计，其回测结果与实盘基本不沾边，这也是为什么大多数人明明回测很厉害，一到实盘就翻车的原因。在我的这个设置下，那些均线、MACD等常规技术全军覆没。</span>
 
 <hr class="article-hr">
-设置1：做回测的时候一定要选“后复权”，否则系统存在“未来能力”</div>
+👇 设置1：做回测的时候一定要选“后复权”，否则系统存在“未来能力”</div>
                             <img data-umami-event="bs-a1-view-image-1001" src="./bs_a1/1001.png" alt="图 1" loading="lazy" class="mt-3 w-full rounded border" style="border-color: var(--color-border);" />
                         </div>
 
                         <!-- 2 -->
                         <div class="mb-10">
-                            <div class="article-text-block whitespace-pre p-4">设置2：测评时间段一定要包含完整的一个牛熊周期。<span class="article-note-dim">（但是时间也不能早远，例如我们测的如果拉到2007年至今，年化收益率还能再翻十倍！为什么呢，因为指数本身的成分股变化太大了）</span></div>
+                            <div class="article-text-block whitespace-pre p-4">👇 设置2：测评时间段一定要包含完整的一个牛熊周期。<span class="article-note-dim">（但是时间也不能早远，例如我们测的如果拉到2007年至今，年化收益率还能再翻十倍！为什么呢，因为指数本身的成分股变化太大了）</span></div>
                             <img data-umami-event="bs-a1-view-image-1002" src="./bs_a1/1002.png" alt="图 2" loading="lazy" class="mt-3 w-full rounded border" style="border-color: var(--color-border);" />
                         </div>
 
                         <!-- 3 -->
                         <div class="mb-10">
-                            <div class="article-text-block whitespace-pre p-4">设置3：合理的手续费这个默认的就行区别不大。 <span class="hl">而最最重要的是</span> ，介入价位，一定要选「次周期」的。
+                            <div class="article-text-block whitespace-pre p-4">👇 设置3：合理的手续费这个默认的就行区别不大。 <span class="hl">而最最重要的是</span> ，介入价位，一定要选「次周期」的。
 
 这个设置也就是说，在指标发生信号后的第二天才进行买入或卖出，为什么呢？因为在实盘中，当天盘中的信号在没有收盘前是会变化的！！！我这里选“次周期中价”，其实选开盘/收盘价都差不多。<span class="article-note-dim">（为什么选次周期？因为实盘中的信号是盘中变化的，如果不选次周期，则可能当天买入后，当天就卖出，这样就无法获得第二天的收益。）</span></span></div>
                             <img data-umami-event="bs-a1-view-image-1003" src="./bs_a1/1003.png" alt="图 3" loading="lazy" class="mt-3 w-full rounded border" style="border-color: var(--color-border);" />
@@ -223,19 +231,19 @@
 
                         <!-- 4 -->
                         <div class="mb-10">
-                            <div class="article-text-block whitespace-pre p-4">设置4：平仓条件，略过不选，我们使用指标系统中的卖出信号平仓。</div>
+                            <div class="article-text-block whitespace-pre p-4">👇 设置4：平仓条件，略过不选，我们使用指标系统中的卖出信号平仓。</div>
                             <img data-umami-event="bs-a1-view-image-1004" src="./bs_a1/1004.png" alt="图 4" loading="lazy" class="mt-3 w-full rounded border" style="border-color: var(--color-border);" />
                         </div>
 
                         <!-- 5 -->
                         <div class="mb-10">
-                            <div class="article-text-block whitespace-pre p-4">好，下面就是选择的「沪深300」成分股进行测试。</div>
+                            <div class="article-text-block whitespace-pre p-4">👇 好，下面就是选择的「沪深300」成分股进行测试。</div>
                             <img data-umami-event="bs-a1-view-image-1005" src="./bs_a1/1005.png" alt="图 5" loading="lazy" class="mt-3 w-full rounded border" style="border-color: var(--color-border);" />
                         </div>
 
                         <!-- 6 -->
                         <div class="mb-10">
-                            <div class="article-text-block whitespace-pre p-4">测试结果如图。除了超高的收益率，还请关注两个点：
+                            <div class="article-text-block whitespace-pre p-4">👇 测试结果如图。除了超高的收益率，还请关注两个点：
 <ol class="list-decimal ml-6 mt-2">
 <li>胜率：36%（有经验的朋友可以看出本策略的核心价值观吧）</li>
 <li>最大回撤：39%（即在这整个交易生涯中，资金从最高点回落点程度。并且，通达信的测评结果中这个数字并不是综合平均值，它只是个股中回撤幅度最大的那个，<span class="hl">实际综合平均值是16%</span> ）</li>
@@ -245,64 +253,64 @@
 
                         <!-- 7 -->
                         <div class="mb-10">
-                            <div class="article-text-block whitespace-pre p-4">以最高收益排序，对于有大行情的标的，我们的指标的操盘能力，抓取利润的能力，是多么的恐怖和无敌！
+                            <div class="article-text-block whitespace-pre p-4">👇 以最高收益排序，对于有大行情的标的，我们的指标的操盘能力，抓取利润的能力，是多么的恐怖和无敌！
 
 就此进一步说明 <span class="hl">指标实际运用方法论：</span>
 <ol class="list-decimal ml-6 mt-2">
 <li>要知道我们回测可以跑整个指数或板块的成分股，但是实盘中个人的能力只能交易至多几个，所以，翻几倍的回测能力（它是一个平均值），与你的实际盈利并不划等号！你可能是超高几十倍！也可能，只是保本。</li>
-<li>经过计算，<span class="hl">更具参考价值的是复合年化收益率47%</span> ，最大回撤15%。拥有本指标，你将超越99.9%的投资者！<span class="article-note-dim2">（这个成绩甚至比曾经风靡一时的暴利小市值类量化策略更优秀！）</span></li>
+<li>经过计算，<span class="hl">更具参考价值的<span class="hl2">长期</span><span class="hl3">复利</span>年化收益率在60%，<span class="hl4">资金每1.5年翻一倍</span></span> ，最大回撤15%。拥有本指标，你将超越99.9%的投资者！<span class="article-note-dim2">这个成绩（排除资金容量的因素，仅对比风险收益比率）甚至接近全球最顶级量化之王--文艺复兴科技（Renaissance Technologies）的「大奖章基金」！</span></li>
 <li>也就是回到我们开头那句话：技术指标是操盘术，是用来托底和拉高上限的，最终的盈利多寡，在于你交易的标的。</li>
 <li>所以，拿到指标后，效果是，你可以终结对技术分析的研究了，<span class="hl">你拥有了对操盘能力的某种确定性！</span></li>
-<li>接下来，你可以尽情研究选好股，甚至某些简单粗暴的选股策略都能运用上来取得很好的成绩！</li>
+<li>接下来，你可以尽情研究选好股，甚至某些简单粗暴的选股策略都能运用上来取得很好的成绩！<span class="article-note-dim2">（例如中/小盘成长股会比沪深300收益高近一倍）</span></li>
 </ol></div>
                             <img data-umami-event="bs-a1-view-image-1007" src="./bs_a1/1007.png" alt="图 7" loading="lazy" class="mt-3 w-full rounded border" style="border-color: var(--color-border);" />
                         </div>
 
                         <!-- 8 -->
                         <div class="mb-10">
-                            <div class="article-text-block whitespace-pre p-4">双击个股可以展开查看它的整个交易记录。</div>
+                            <div class="article-text-block whitespace-pre p-4">👇 双击个股可以展开查看它的整个交易记录。</div>
                             <img data-umami-event="bs-a1-view-image-1008" src="./bs_a1/1008.png" alt="图 8" loading="lazy" class="mt-3 w-full rounded border" style="border-color: var(--color-border);" />
                         </div>
 
                         <!-- 9 -->
                         <div class="mb-10">
-                            <div class="article-text-block whitespace-pre p-4">如图，以最低收益率排序，体现的是我们的指标的托底的能力，甚至在最差的行情它也能保本！</div>
+                            <div class="article-text-block whitespace-pre p-4">👇 如图，以最低收益率排序，体现的是我们的指标的托底的能力，甚至在最差的行情它也能保本！</div>
                             <img data-umami-event="bs-a1-view-image-1009" src="./bs_a1/1009.png" alt="图 9" loading="lazy" class="mt-3 w-full rounded border" style="border-color: var(--color-border);" />
                         </div>
 
                         <!-- 10 -->
                         <div class="mb-10">
-                            <div class="article-text-block whitespace-pre p-4">双击个股可以展开查看它的整个交易记录。</div>
+                            <div class="article-text-block whitespace-pre p-4">👇 双击个股可以展开查看它的整个交易记录。</div>
                             <img data-umami-event="bs-a1-view-image-1010" src="./bs_a1/1010.png" alt="图 10" loading="lazy" class="mt-3 w-full rounded border" style="border-color: var(--color-border);" />
                         </div>
 
                         <!-- 11 -->
                         <div class="mb-10">
-                            <div class="article-text-block whitespace-pre p-4">测评「创业300」</div>
+                            <div class="article-text-block whitespace-pre p-4">👇 测评「创业300」</div>
                             <img data-umami-event="bs-a1-view-image-1011" src="./bs_a1/1011.png" alt="图 11" loading="lazy" class="mt-3 w-full rounded border" style="border-color: var(--color-border);" />
                         </div>
 
                         <!-- 12 -->
                         <div class="mb-10">
-                            <div class="article-text-block whitespace-pre p-4">测评「央企100」</div>
+                            <div class="article-text-block whitespace-pre p-4">👇 测评「央企100」</div>
                             <img data-umami-event="bs-a1-view-image-1012" src="./bs_a1/1012.png" alt="图 12" loading="lazy" class="mt-3 w-full rounded border" style="border-color: var(--color-border);" />
                         </div>
 
                         <!-- 13 -->
                         <div class="mb-10">
-                            <div class="article-text-block whitespace-pre p-4">测评「5G概念股」</div>
+                            <div class="article-text-block whitespace-pre p-4">👇 测评「5G概念股」</div>
                             <img data-umami-event="bs-a1-view-image-1013" src="./bs_a1/1013.png" alt="图 13" loading="lazy" class="mt-3 w-full rounded border" style="border-color: var(--color-border);" />
                         </div>
 
                         <!-- 14 -->
                         <div class="mb-10">
-                            <div class="article-text-block whitespace-pre p-4">测评「苹果概念股」</div>
+                            <div class="article-text-block whitespace-pre p-4">👇 测评「苹果概念股」</div>
                             <img data-umami-event="bs-a1-view-image-1014" src="./bs_a1/1014.png" alt="图 14" loading="lazy" class="mt-3 w-full rounded border" style="border-color: var(--color-border);" />
                         </div>
 
                         <!-- 15 -->
                         <div class="mb-10">
-                            <div class="article-text-block whitespace-pre p-4">测评「通达信热股」。这个要注意了，特意做了一个反例：
+                            <div class="article-text-block whitespace-pre p-4">👇 测评「通达信热股」。这个要注意了，特意做了一个反例：
 <ol class="list-decimal ml-6 mt-2">
 <li>警惕！测评系统中提供的指数/板块，其中成分股短期内变化是比较大的。</li>
 <li>例如这个「通达信热股」，我们的回测时间段是2017年至2025年，但是现在回测，它提供的是最新更新的涨幅已经很大的股票，那么必然会得到一个非常好的数据！（相当于筛选了已经大涨的股票进行回测）</li>
@@ -313,19 +321,19 @@
 
                         <!-- 16 -->
                         <div class="mb-10">
-                            <div class="article-text-block whitespace-pre p-4">测评「中证龙头」</div>
+                            <div class="article-text-block whitespace-pre p-4">👇 测评「中证龙头」</div>
                             <img data-umami-event="bs-a1-view-image-1016" src="./bs_a1/1016.png" alt="图 16" loading="lazy" class="mt-3 w-full rounded border" style="border-color: var(--color-border);" />
                         </div>
 
                         <!-- 17 -->
                         <div class="mb-10">
-                            <div class="article-text-block whitespace-pre p-4">测评「在线消费概念股」</div>
+                            <div class="article-text-block whitespace-pre p-4">👇 测评「在线消费概念股」</div>
                             <img data-umami-event="bs-a1-view-image-1017" src="./bs_a1/1017.png" alt="图 17" loading="lazy" class="mt-3 w-full rounded border" style="border-color: var(--color-border);" />
                         </div>
 
                         <!-- 18 -->
                         <div class="mb-10">
-                            <div class="article-text-block whitespace-pre p-4">测评「沪深300」的周线。看看本指标的跨周期能力！并且注意，我们的指标是没有调参数的！主要基于逻辑设计，不需要反复调整参数，避免陷入更多的不确定性中。
+                            <div class="article-text-block whitespace-pre p-4">👇 测评「沪深300」的周线。看看本指标的跨周期能力！并且注意，我们的指标是没有调参数的！主要基于逻辑设计，不需要反复调整参数，避免陷入更多的不确定性中。
 
 但是周线为什么收益率低了这么多呢？留一题，各位思考。</div>
                             <img data-umami-event="bs-a1-view-image-1018" src="./bs_a1/1018.png" alt="图 18" loading="lazy" class="mt-3 w-full rounded border" style="border-color: var(--color-border);" />
@@ -333,7 +341,7 @@
 
                         <!-- 19 -->
                         <div class="mb-10">
-                            <div class="article-text-block whitespace-pre p-4">一张图展示，本指标在实盘中，如何运用。
+                            <div class="article-text-block whitespace-pre p-4">👇 一张图展示，本指标在实盘中，如何运用。
 步骤如图中的 1、2（买入）3、4（卖出）。
 当你选定标的，贵在坚持！
 
